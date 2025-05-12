@@ -1,53 +1,43 @@
 import java.io.*;
 import java.net.*;
 
-class Servidor {
+import java.io.*;
+import java.net.*;
 
-    public static void main(String argv[]) throws Exception {
-        String clientSentence;
-        String respuesta;
-
-        ServerSocket welcomeSocket = new ServerSocket(6789);
-
-        System.out.println("Servidor iniciado... Esperando conexiones en el puerto 6789");
+public class Servidor {
+    public static void main(String[] args) throws IOException {
+        ServerSocket serverSocket = new ServerSocket(6789);
 
         while (true) {
-            Socket connectionSocket = welcomeSocket.accept();
+            Socket socket = serverSocket.accept();
 
-            BufferedReader inFromClient = new BufferedReader(
-                    new InputStreamReader(connectionSocket.getInputStream()));
+            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            DataOutputStream out = new DataOutputStream(socket.getOutputStream());
 
-            DataOutputStream outToClient = new DataOutputStream(connectionSocket.getOutputStream());
+            String linea = in.readLine();
+            String[] partes = linea.split(" ");
+            String respuesta;
 
-            clientSentence = inFromClient.readLine();
-            System.out.println("Mensaje recibido: " + clientSentence);
-
-            // Separar entrada: se espera "<moneda> <monto>"
-            String[] partes = clientSentence.split(" ");
             if (partes.length == 3) {
-
-                double monto;
-
                 try {
-                    monto = Double.parseDouble(partes[1]);
-                    Moneda monedaCambios = new Moneda(monto, partes[0], partes[2]);
-                    double resultado = monedaCambios.cambiosMonetarios();
+                    double monto = Double.parseDouble(partes[1]);
+                    Moneda moneda = new Moneda(monto, partes[0], partes[2]);
+                    double resultado = moneda.cambiosMonetarios();
 
                     if (resultado >= 0) {
-                        respuesta = "Resultado: " + resultado + " " + partes[2] + "\n";
+                        respuesta = "Resultado: " + resultado + " " + partes[2];
                     } else {
-                        respuesta = "Conversión no válida.\n";
+                        respuesta = "* Conversión no válida.";
                     }
-
                 } catch (NumberFormatException e) {
-                    respuesta = "Formato de monto inválido.\n";
+                    respuesta = "* Monto no numérico.";
                 }
-
             } else {
-                respuesta = "Formato incorrecto. Use: <moneda> <monto>\n";
+                respuesta = "* Formato incorrecto. Use: <origen> <monto> <destino>";
             }
 
-            outToClient.writeBytes(respuesta);
+            out.writeBytes(respuesta + "\n");
+            socket.close();
         }
     }
 }
