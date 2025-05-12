@@ -16,7 +16,7 @@ public class RepositorioAbrilJorge extends JFrame {
     public RepositorioAbrilJorge() {
 
         setTitle("Agregar Divisa");
-        setSize(500, 260);
+        setSize(580, 300);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
         setLocationRelativeTo(null);
