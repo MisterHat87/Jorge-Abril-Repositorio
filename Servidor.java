@@ -15,31 +15,28 @@ class Servidor {
             Socket connectionSocket = welcomeSocket.accept();
 
             BufferedReader inFromClient = new BufferedReader(
-                new InputStreamReader(connectionSocket.getInputStream()));
+                    new InputStreamReader(connectionSocket.getInputStream()));
 
-            DataOutputStream outToClient =
-                new DataOutputStream(connectionSocket.getOutputStream());
+            DataOutputStream outToClient = new DataOutputStream(connectionSocket.getOutputStream());
 
             clientSentence = inFromClient.readLine();
             System.out.println("Mensaje recibido: " + clientSentence);
 
             // Separar entrada: se espera "<moneda> <monto>"
             String[] partes = clientSentence.split(" ");
-            if (partes.length == 2) {
-                String moneda = partes[0].toUpperCase();
+            if (partes.length == 3) {
+
                 double monto;
 
                 try {
                     monto = Double.parseDouble(partes[1]);
+                    Moneda monedaCambios = new Moneda(monto, partes[0], partes[2]);
+                    double resultado = monedaCambios.cambiosMonetarios();
 
-                    if (moneda.equals("CRC")) {
-                        double resultado = monto / 500.0;
-                        respuesta = "Equivalente en USD: $" + resultado + "\n";
-                    } else if (moneda.equals("USD")) {
-                        double resultado = monto * 500.0;
-                        respuesta = "Equivalente en CRC: ₡" + resultado + "\n";
+                    if (resultado >= 0) {
+                        respuesta = "Resultado: " + resultado + " " + partes[2] + "\n";
                     } else {
-                        respuesta = "Moneda no válida. Use 'USD' o 'CRC'.\n";
+                        respuesta = "Conversión no válida.\n";
                     }
 
                 } catch (NumberFormatException e) {

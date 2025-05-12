@@ -1,18 +1,17 @@
 public class Moneda {
-    
-    private double monto;
-    private String  valorEntrada;
-    private String  valorSalida;
 
-     public Moneda(double monto , String valorEntrada, String valorSalida) {
+    private double monto;
+    private String valorEntrada;
+    private String valorSalida;
+
+    public Moneda(double monto, String valorEntrada, String valorSalida) {
         this.monto = monto;
         this.valorEntrada = valorEntrada;
         this.valorSalida = valorSalida;
 
- 
-}
+    }
 
-public double getMonto() {
+    public double getMonto() {
         return monto;
     }
 
@@ -24,9 +23,28 @@ public double getMonto() {
         return valorSalida;
     }
 
-    public double cambiosMonetarios (){
+    public double cambiosMonetarios() {
 
+        if (valorEntrada.equals(valorSalida))
+            return monto;
 
-     return -1;
+        if (valorEntrada.equals("CRC")) {
+            if (valorSalida.equals("USD"))
+                return monto / 500;
+            if (valorSalida.equals("EUR"))
+                return monto / 540;
+        } else if (valorEntrada.equals("USD")) {
+            if (valorSalida.equals("CRC"))
+                return monto * 500;
+            if (valorSalida.equals("EUR"))
+                return monto * 0.92;
+        } else if (valorEntrada.equals("EUR")) {
+            if (valorSalida.equals("USD"))
+                return monto / 0.92;
+            if (valorSalida.equals("CRC"))
+                return monto * 540;
+        }
+
+        return -1;
     }
 }
