@@ -12,6 +12,7 @@ public class RepositorioAbrilJorge extends JFrame {
     private JTextField txtMonto;
     private JComboBox<String> comboEntrada;
     private JComboBox<String> comboSalida;
+    private int contadorResutados = 1;
 
     public RepositorioAbrilJorge() {
         setTitle("Convertidor de Divisas");
@@ -21,7 +22,7 @@ public class RepositorioAbrilJorge extends JFrame {
         setLocationRelativeTo(null);
 
         add(new JLabel("Convertir de:"));
-        comboEntrada = new JComboBox<>(new String[]{"CRC", "USD", "EUR"});
+        comboEntrada = new JComboBox<>(new String[] { "CRC", "USD", "EUR" });
         add(comboEntrada);
 
         add(new JLabel("Monto:"));
@@ -29,7 +30,7 @@ public class RepositorioAbrilJorge extends JFrame {
         add(txtMonto);
 
         add(new JLabel("A:"));
-        comboSalida = new JComboBox<>(new String[]{"CRC", "USD", "EUR"});
+        comboSalida = new JComboBox<>(new String[] { "CRC", "USD", "EUR" });
         add(comboSalida);
 
         JButton btnConvertir = new JButton("Convertir");
@@ -50,22 +51,25 @@ public class RepositorioAbrilJorge extends JFrame {
     }
 
     private void agregarDato() {
-        String tipo = (String) comboTipo.getSelectedItem();
-        String montoTexto = txtNombre.getText().trim();
+        String origen = (String) comboEntrada.getSelectedItem();
+        String destino = (String) comboSalida.getSelectedItem();
+        String montoTexto = txtMonto.getText().trim();
 
         if (montoTexto.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Debe ingresar un monto", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Debe ingresar un monto.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         try {
             double monto = Double.parseDouble(montoTexto);
-            String mensaje = "Se ingresó " + monto + " " + tipo + "\n";
-            textArea.append(mensaje);
-            JOptionPane.showMessageDialog(this, "Registro Realizado", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            txtNombre.setText("");
+            String mensaje = origen + " " + monto + " " + destino;
+            String respuesta = Cliente.enviar(mensaje);
+
+            textArea.append("Resultado #" + contadorResutados + ": " + respuesta + "\n");
+            contadorResutados++;
+            txtMonto.setText("");
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "El monto debe ser numérico", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El monto debe ser numérico.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 

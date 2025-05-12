@@ -24,7 +24,7 @@ public class Servidor {
                     double resultado = moneda.cambiosMonetarios();
 
                     if (resultado >= 0) {
-                        respuesta = "Resultado: " + resultado + " " + partes[2];
+                        respuesta = resultado + " " + partes[2];
                     } else {
                         respuesta = "* Conversión no válida.";
                     }
