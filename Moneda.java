@@ -1,4 +1,5 @@
-public class Moneda {
+public class Moneda {//Cambio 1
+                    // Creacion de la clase Moneda
 
     private double monto;
     private String valorEntrada;
@@ -23,7 +24,8 @@ public class Moneda {
         return valorSalida;
     }
 
-    public double cambiosMonetarios() {
+    public double cambiosMonetarios() { //Cambio 2 
+                                      //Se agregan las distintas monedas
 
         if (valorEntrada.equals(valorSalida))
             return monto;
