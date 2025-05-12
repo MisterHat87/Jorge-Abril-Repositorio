@@ -12,6 +12,9 @@ public class Cliente {
 
         // Uso del socket localmente.
         Socket clientSocket = new Socket("localhost", 6789);
+
+
+        
         try 
         {
             System.out.println("Ingrese un valor"); 

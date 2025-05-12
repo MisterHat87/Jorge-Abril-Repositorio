@@ -21,26 +21,25 @@ public class RepositorioAbrilJorge extends JFrame {
         setLayout(new FlowLayout());
         setLocationRelativeTo(null);
 
-        
-        add(new JLabel("Tipo de Divisa:"));
-        comboTipo = new JComboBox<>(new String[]{"CRC", "USD", "EUR"});
+        add(new JLabel("Divisa de ingreso:"));
+        comboTipo = new JComboBox<>(new String[] { "CRC", "USD", "EUR" });
         add(comboTipo);
 
-       
+        add(new JLabel("Divisa de cambio:"));
+        comboTipo = new JComboBox<>(new String[] { "CRC", "USD", "EUR" });
+        add(comboTipo);
+
         add(new JLabel("Monto:"));
         txtNombre = new JTextField(10);
         add(txtNombre);
 
-       
         JButton btnEnviar = new JButton("Enviar");
         add(btnEnviar);
 
-        
         textArea = new JTextArea(10, 40);
         textArea.setEditable(false);
         add(new JScrollPane(textArea));
 
-       
         btnEnviar.addActionListener(new ActionListener() { // Acción del botón
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -65,7 +64,7 @@ public class RepositorioAbrilJorge extends JFrame {
             String mensaje = "Se ingresó " + monto + " " + tipo + "\n";
             textArea.append(mensaje);
             JOptionPane.showMessageDialog(this, "Registro Realizado", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            txtNombre.setText(""); 
+            txtNombre.setText("");
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "El monto debe ser numérico", "Error", JOptionPane.ERROR_MESSAGE);
         }
