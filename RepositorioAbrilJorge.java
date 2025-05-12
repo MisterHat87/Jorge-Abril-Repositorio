@@ -8,39 +8,38 @@ import java.awt.event.ActionListener;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class RepositorioAbrilJorge extends JFrame {
-
     private JTextArea textArea;
-    private JTextField txtNombre;
-    private JComboBox<String> comboTipo;
+    private JTextField txtMonto;
+    private JComboBox<String> comboEntrada;
+    private JComboBox<String> comboSalida;
 
     public RepositorioAbrilJorge() {
-
-        setTitle("Agregar Divisa");
-        setSize(580, 300);
+        setTitle("Convertidor de Divisas");
+        setSize(600, 300);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
         setLocationRelativeTo(null);
 
-        add(new JLabel("Divisa de ingreso:"));
-        comboTipo = new JComboBox<>(new String[] { "CRC", "USD", "EUR" });
-        add(comboTipo);
+        add(new JLabel("Convertir de:"));
+        comboEntrada = new JComboBox<>(new String[]{"CRC", "USD", "EUR"});
+        add(comboEntrada);
 
         add(new JLabel("Monto:"));
-        txtNombre = new JTextField(10);
-        add(txtNombre);
+        txtMonto = new JTextField(10);
+        add(txtMonto);
 
-          add(new JLabel("Divisa de cambio:"));
-        comboTipo = new JComboBox<>(new String[] { "CRC", "USD", "EUR" });
-        add(comboTipo);
+        add(new JLabel("A:"));
+        comboSalida = new JComboBox<>(new String[]{"CRC", "USD", "EUR"});
+        add(comboSalida);
 
-        JButton btnEnviar = new JButton("Enviar");
-        add(btnEnviar);
+        JButton btnConvertir = new JButton("Convertir");
+        add(btnConvertir);
 
-        textArea = new JTextArea(10, 40);
+        textArea = new JTextArea(10, 45);
         textArea.setEditable(false);
         add(new JScrollPane(textArea));
 
-        btnEnviar.addActionListener(new ActionListener() { // Acción del botón
+        btnConvertir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 agregarDato();
