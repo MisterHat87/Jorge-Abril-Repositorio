@@ -25,13 +25,13 @@ public class RepositorioAbrilJorge extends JFrame {
         comboTipo = new JComboBox<>(new String[] { "CRC", "USD", "EUR" });
         add(comboTipo);
 
-        add(new JLabel("Divisa de cambio:"));
-        comboTipo = new JComboBox<>(new String[] { "CRC", "USD", "EUR" });
-        add(comboTipo);
-
         add(new JLabel("Monto:"));
         txtNombre = new JTextField(10);
         add(txtNombre);
+
+          add(new JLabel("Divisa de cambio:"));
+        comboTipo = new JComboBox<>(new String[] { "CRC", "USD", "EUR" });
+        add(comboTipo);
 
         JButton btnEnviar = new JButton("Enviar");
         add(btnEnviar);
