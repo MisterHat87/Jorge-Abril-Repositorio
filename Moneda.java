@@ -24,4 +24,9 @@ public double getMonto() {
         return valorSalida;
     }
 
+    public double cambiosMonetarios (){
+
+
+     return -1;
+    }
 }
