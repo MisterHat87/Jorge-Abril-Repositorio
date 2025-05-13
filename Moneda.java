@@ -5,7 +5,7 @@ public class Moneda {//Cambio 1
     private String valorEntrada;
     private String valorSalida;
 
-    public Moneda(double monto, String valorEntrada, String valorSalida) {
+    public Moneda(double monto, String valorEntrada, String valorSalida) { // Constructor de moneda
         this.monto = monto;
         this.valorEntrada = valorEntrada;
         this.valorSalida = valorSalida;
