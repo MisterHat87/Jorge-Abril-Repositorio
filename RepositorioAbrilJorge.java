@@ -17,19 +17,19 @@ public class RepositorioAbrilJorge extends JFrame {
     private int contadorResultados = 1;
 
     public RepositorioAbrilJorge() {
-        setTitle("Convertidor de Divisas");
+        setTitle("Convertidor de Divisas");// Título de la ventana
         setSize(700, 400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new GridBagLayout());
 
         // COLORES
-        Color fondo = new Color(240, 248, 255);     // Azul claro
-        Color campos = new Color(255, 255, 255);    // Blanco
-        Color acento = new Color(100, 149, 237);    // Azul acento
-        Color borde = new Color(200, 200, 200);     // Gris claro
+        Color fondo = new Color(240, 248, 255);    
+        Color campos = new Color(255, 255, 255);    
+        Color acento = new Color(100, 149, 237);     
+        Color borde = new Color(200, 200, 200);      
 
-        getContentPane().setBackground(fondo);
+        getContentPane().setBackground(fondo);// Color de fondo
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
@@ -46,18 +46,18 @@ public class RepositorioAbrilJorge extends JFrame {
         gbc.gridwidth = 1;
 
         // ETIQUETAS Y CAMPOS
-        JLabel lblDe = new JLabel("Convertir de:");
+        JLabel lblDe = new JLabel("Convertir de:");// Convertir de:
         lblDe.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         gbc.gridy = 1;
         gbc.gridx = 0;
         add(lblDe, gbc);
 
-        comboEntrada = new JComboBox<>(new String[]{"CRC", "USD", "EUR"});
+        comboEntrada = new JComboBox<>(new String[]{"CRC", "USD", "EUR"});// Opciones de monedas
         estiloCombo(comboEntrada, campos, borde);
         gbc.gridx = 1;
         add(comboEntrada, gbc);
 
-        JLabel lblMonto = new JLabel("Monto:");
+        JLabel lblMonto = new JLabel("Monto:");// Monto:
         lblMonto.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         gbc.gridy = 2;
         gbc.gridx = 0;
@@ -68,19 +68,19 @@ public class RepositorioAbrilJorge extends JFrame {
         gbc.gridx = 1;
         add(txtMonto, gbc);
 
-        JLabel lblA = new JLabel("A:");
+        JLabel lblA = new JLabel("A:");//
         lblA.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         gbc.gridy = 3;
         gbc.gridx = 0;
         add(lblA, gbc);
 
-        comboSalida = new JComboBox<>(new String[]{"CRC", "USD", "EUR"});
+        comboSalida = new JComboBox<>(new String[]{"CRC", "USD", "EUR"});// Opciones de monedas
         estiloCombo(comboSalida, campos, borde);
         gbc.gridx = 1;
         add(comboSalida, gbc);
 
         // BOTÓN
-        JButton btnConvertir = new JButton("Convertir");
+        JButton btnConvertir = new JButton("Convertir");// boton  Convertir
         btnConvertir.setBackground(acento);
         btnConvertir.setForeground(Color.WHITE);
         btnConvertir.setFocusPainted(false);
@@ -119,9 +119,9 @@ public class RepositorioAbrilJorge extends JFrame {
         });
 
         setVisible(true);
-    }
+    }// fin del metodo constructor
 
-    private void agregarDato() {
+    private void agregarDato() {// Agregar dato
         String origen = (String) comboEntrada.getSelectedItem();
         String destino = (String) comboSalida.getSelectedItem();
         String montoTexto = txtMonto.getText().trim();
@@ -142,7 +142,7 @@ public class RepositorioAbrilJorge extends JFrame {
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "El monto debe ser numérico.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }
+    }// fin del metodo agregarDato
 
     private void estiloCampo(JTextField campo, Color bg, Color border) {
         campo.setBackground(bg);
@@ -154,9 +154,9 @@ public class RepositorioAbrilJorge extends JFrame {
         combo.setBackground(bg);
         combo.setBorder(new LineBorder(border, 1, true));
         combo.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-    }
+    }// fin del metodo estiloCombo
 
     public static void main(String[] args) {
         new RepositorioAbrilJorge();
-    }
-}
+    }// fin del main
+}// fin de la clase
