@@ -18,7 +18,7 @@ public class RepositorioAbrilJorge extends JFrame {
 
     public RepositorioAbrilJorge() {
         setTitle("Convertidor de Divisas");// Título de la ventana
-        setSize(700, 400);
+        setSize(700, 450);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new GridBagLayout());
@@ -109,6 +109,33 @@ public class RepositorioAbrilJorge extends JFrame {
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
         add(scrollPane, gbc);
+
+        JButton btnCerrar = new JButton("Cerrar");
+        btnCerrar.setBackground(new Color(220, 53, 69)); // Rojo suave
+        btnCerrar.setForeground(Color.WHITE);
+        btnCerrar.setFocusPainted(false);
+        btnCerrar.setFont(new Font("Segoe UI", Font.BOLD, 13)); // Fuente más pequeña
+        btnCerrar.setBorder(BorderFactory.createEmptyBorder(8, 36, 8, 36)); // Bordes más compactos
+
+        // Colocar botón en panel auxiliar para evitar ocupar espacio vertical completo
+        JPanel panelCerrar = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
+        panelCerrar.setOpaque(false); // Fondo transparente para mantener el estilo general
+        panelCerrar.add(btnCerrar);
+
+        gbc.gridy = 6;
+        gbc.gridx = 0;
+        gbc.gridwidth = 2;
+        gbc.weighty = 0;
+        gbc.fill = GridBagConstraints.NONE;
+        add(panelCerrar, gbc);
+
+        // Acción del botón Cerrar
+        btnCerrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose(); // Cierra la ventana actual
+            }
+        });
 
         // Acción del botón
         btnConvertir.addActionListener(new ActionListener() {//
